@@ -1,3 +1,3 @@
-export default function LabelList() {
+export function LabelList() {
   return <h3>Labels</h3>;
 }

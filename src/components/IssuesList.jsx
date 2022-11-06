@@ -1,12 +1,13 @@
 import { useQuery } from 'react-query';
 import { Link } from 'react-router-dom';
 
-import { IssueItem } from '../components/IssueItem';
+import { IssueItem } from '../components';
 
-export default function IssuesList() {
+export function IssuesList() {
   const { data, isLoading } = useQuery(['issues'], () =>
     fetch('/api/issues').then((res) => res.json()),
   );
+
   return (
     <div>
       <h1>Issues List</h1>

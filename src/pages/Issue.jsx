@@ -1,4 +1,4 @@
-import IssueDetails from '../components/IssueDetails';
+import { IssueDetails } from '../components';
 
 export default function Issue() {
   return <IssueDetails />;

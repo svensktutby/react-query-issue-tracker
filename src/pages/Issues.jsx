@@ -1,5 +1,5 @@
-import IssuesList from '../components/IssuesList';
-import LabelList from '../components/LabelList';
+import { IssuesList, LabelList } from '../components';
+
 export default function Issues() {
   return (
     <div>
