@@ -1,11 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
+import { QueryClient, QueryClientProvider } from 'react-query';
 import { worker } from '@uidotdev/react-query-api';
 
 import App from './App';
 
 import './index.css';
+
+const queryClient = new QueryClient();
 
 new Promise((res) => setTimeout(res, 100))
   .then(() =>
@@ -17,11 +20,13 @@ new Promise((res) => setTimeout(res, 100))
   .then(() => {
     ReactDOM.render(
       <React.StrictMode>
-        <BrowserRouter>
-          <div className="container">
-            <App />
-          </div>
-        </BrowserRouter>
+        <QueryClientProvider client={queryClient}>
+          <BrowserRouter>
+            <div className="container">
+              <App />
+            </div>
+          </BrowserRouter>
+        </QueryClientProvider>
       </React.StrictMode>,
       document.getElementById('root'),
     );
