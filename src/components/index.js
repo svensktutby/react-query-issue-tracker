@@ -4,3 +4,4 @@ export * from './IssuesList.jsx';
 export * from './LabelList.jsx';
 export * from './Label.jsx';
 export * from './StatusSelect.jsx';
+export * from './IssueHeader.jsx';
