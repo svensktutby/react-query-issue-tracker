@@ -1,15 +1,16 @@
 import { useState } from 'react';
-import { IssuesList, LabelList } from '../components';
+import { IssuesList, LabelList, StatusSelect } from '../components';
 
 export default function Issues() {
   const [labels, setLabels] = useState([]);
+  const [status, setStatus] = useState('');
 
   return (
     <div>
       <main>
         <section>
           <h1>Issues</h1>
-          <IssuesList labels={labels} />
+          <IssuesList labels={labels} status={status} />
         </section>
         <aside>
           <LabelList
@@ -22,6 +23,8 @@ export default function Issues() {
               )
             }
           />
+          <h3>Status</h3>
+          <StatusSelect value={status} onChange={(event) => setStatus(event.target.value)} />
         </aside>
       </main>
     </div>
