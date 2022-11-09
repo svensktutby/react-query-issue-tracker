@@ -1,23 +1,27 @@
 import { useState } from 'react';
 import { useQuery } from 'react-query';
-import { Link } from 'react-router-dom';
 
+import { fetchWithError } from '../helpers';
 import { IssueItem } from '../components';
 
 export function IssuesList({ labels, status }) {
-  const issuesQuery = useQuery(['issues', { labels, status }], () => {
-    const statusString = status ? `&status=${status}` : '';
-    const labelsString = labels.map((label) => `labels[]=${label}`).join('&');
-    return fetch(`/api/issues?${labelsString}${statusString}`).then((res) => res.json(), {
+  const issuesQuery = useQuery(
+    ['issues', { labels, status }],
+    () => {
+      const statusString = status ? `&status=${status}` : '';
+      const labelsString = labels.map((label) => `labels[]=${label}`).join('&');
+      return fetchWithError(`/api/issues?${labelsString}${statusString}`);
+    },
+    {
       staleTime: 1000 * 60,
-    });
-  });
+    },
+  );
 
   const [searchValue, setSearchValue] = useState('');
 
   const searchQuery = useQuery(
     ['issues', 'search', searchValue],
-    () => fetch(`/api/search/issues?q=${searchValue}`).then((res) => res.json()),
+    () => fetchWithError(`/api/search/issues?q=${searchValue}`),
     {
       enabled: searchValue.length > 0,
     },
@@ -47,6 +51,8 @@ export function IssuesList({ labels, status }) {
       <h2>Issues List</h2>
       {issuesQuery.isLoading ? (
         <p>Loading...</p>
+      ) : issuesQuery.isError ? (
+        <p>{issuesQuery.error.message}</p>
       ) : searchQuery.fetchStatus === 'idle' && searchQuery.isLoading === true ? (
         <ul className="issues-list">
           {issuesQuery.data.map((issue) => (

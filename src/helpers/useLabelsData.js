@@ -1,7 +1,8 @@
 import { useQuery } from 'react-query';
+import { fetchWithError } from '.';
 
 export function useLabelsData() {
-  const labelsData = useQuery(['labels'], () => fetch(`/api/labels`).then((res) => res.json()), {
+  const labelsData = useQuery(['labels'], () => fetchWithError(`/api/labels`), {
     staleTime: 1000 * 60 * 60,
   });
 
