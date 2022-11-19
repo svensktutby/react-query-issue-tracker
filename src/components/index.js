@@ -7,3 +7,4 @@ export * from './StatusSelect.jsx';
 export * from './IssueHeader.jsx';
 export * from './Loader.jsx';
 export * from './FetchingIndicator.jsx';
+export * from './IssueStatus.jsx';
