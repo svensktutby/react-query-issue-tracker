@@ -1,5 +1,5 @@
 import { useQuery } from 'react-query';
-import { fetchWithError } from '.';
+import { fetchWithError, defaultLabels } from '.';
 
 export function useLabelsData() {
   const labelsData = useQuery(
@@ -7,6 +7,7 @@ export function useLabelsData() {
     ({ signal }) => fetchWithError(`/api/labels`, { signal }),
     {
       staleTime: 1000 * 60 * 60,
+      placeholderData: defaultLabels,
     },
   );
 
