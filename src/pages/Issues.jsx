@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
+
 import { IssuesList, LabelList, StatusSelect } from '../components';
 
 export default function Issues() {
@@ -24,6 +26,10 @@ export default function Issues() {
           />
           <h3>Status</h3>
           <StatusSelect value={status} onChange={(event) => setStatus(event.target.value)} />
+          <hr />
+          <Link className="button" to="/add">
+            Add Issue
+          </Link>
         </aside>
       </main>
     </div>

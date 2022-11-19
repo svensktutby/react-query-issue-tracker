@@ -1,7 +1,7 @@
 export async function fetchWithError(url, options) {
   const response = await fetch(url, options);
 
-  if (response.status === 200) {
+  if (response.ok) {
     const result = await response.json();
 
     if (result.error) {
