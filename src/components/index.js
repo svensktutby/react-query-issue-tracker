@@ -8,3 +8,4 @@ export * from './IssueHeader.jsx';
 export * from './Loader.jsx';
 export * from './FetchingIndicator.jsx';
 export * from './IssueStatus.jsx';
+export * from './IssueAssignment.jsx';

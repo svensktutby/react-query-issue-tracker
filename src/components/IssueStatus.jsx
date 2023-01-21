@@ -8,7 +8,7 @@ export function IssueStatus({ status, issueNumber }) {
 
   const statusQueryKey = ['issues', issueNumber];
   const setStatus = useMutation(
-    () => {
+    (status) => {
       fetchWithError(`/api/issues/${issueNumber}`, {
         method: 'PUT',
         headers: { 'content-type': 'application/json' },
